@@ -1,6 +1,7 @@
 import questionary
 import expenses
 import statistic
+import sys
 
 print("""
 |-----------------------|
@@ -16,9 +17,9 @@ while True:
                        "2. View Expenses",
                        "3. Delete Expense",
                        "4. Filter Expenses",
-                       "5. View Statistics"
+                       "5. View Statistics",
                        "6. Exit"
-                   ])
+                   ]).ask()
 
     if choice == "1. Add Expense":
         expenses.add_expense()
@@ -36,7 +37,7 @@ while True:
         pass
 
     elif choice == "6. Exit":
-        if questionary.confirm("Are you sure you want to exit?"):
-            exit()
+        if questionary.confirm("Are you sure you want to exit?").ask():
+            sys.exit()
         else:
             continue
