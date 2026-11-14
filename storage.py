@@ -1,24 +1,51 @@
-import json
 
-FILE = "expenses.json"
+import json
+from pathlib import Path
+
+FILE = Path(__file__).parent / "expenses.json"
+
 
 def initialize_storage():
+
+    if not FILE.exists():
+        with open(FILE, "w", encoding="utf-8") as f:
+            json.dump([], f, indent=4)
+
+
+def load_expenses():
+
+    initialize_storage()
+
     try:
-        with open(FILE):
-            pass
-    except:
-        with open(FILE, "w"):
-            pass
+        with open(FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        if not isinstance(data, list):
+            raise ValueError("Invalid expenses data format.")
+
+        return data
+
+    except json.JSONDecodeError as error:
+        raise ValueError("The expenses.json file contains invalid JSON.") from error
 
 
 def save_expenses(expense):
-    with open(FILE, "a") as f:
-        json.dump(expense, f)
 
-def load_expenses():
-    with open(FILE) as f:
-        data = json.load(f)
+    expenses = load_expenses()
 
-    return data
+    expenses.append(expense)
 
-initialize_storage()
+    with open(FILE, "w", encoding="utf-8") as f:
+        json.dump(expenses, f, indent=4, ensure_ascii=False)
+
+
+if __name__ == "__main__":
+    initialize_storage()
+
+    save_expenses({
+        "id": 1,
+        "amount": 15.50,
+        "category": "Car"
+    })
+
+    print("Expense saved successfully!")
