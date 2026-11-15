@@ -35,8 +35,19 @@ def add_expense(amount: float, category: str, description: str | None = None):
     return expense
 
 def view_expenses():
-    pass
+    data = storage.load_expenses()
 
+    for expense in data:
+        id = expense["id"]
+        category = expense["category"]
+        amount = expense["amount"]
+        description = expense["description"]
+
+        print(f"=============== EXPENSE {id} ===============")
+        print(f"Amount: {amount}")
+        print(f"Category: {category}")
+        print(f"Description: {description}")
+        print(f"============================================\n\n")
 def delete_expense():
     pass
 
