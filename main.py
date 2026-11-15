@@ -22,7 +22,21 @@ while True:
                    ]).ask()
 
     if choice == "1. Add Expense":
-        expenses.add_expense()
+        amount = questionary.text("Enter the amount: ").ask()
+        category = questionary.select("Select the category: ",choices = [
+            "Housing",
+            "Groceries",
+            "Food & Dining",
+            "Transport",
+            "Health",
+            "Entertainment",
+            "Shopping",
+            "Bills & Subscriptions",
+            "Other"
+        ]).ask()
+        description = questionary.text("Enter a description (optional): ").ask()
+
+        expenses.add_expense(amount=amount,category=category,description=description)
 
     elif choice == "2. View Expenses":
         expenses.view_expenses()
