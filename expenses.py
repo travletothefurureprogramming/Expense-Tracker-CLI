@@ -44,10 +44,11 @@ def view_expenses():
         description = expense["description"]
 
         print(f"=============== EXPENSE {id} ===============")
+        print(f"ID: {id}")
         print(f"Amount: {amount}")
         print(f"Category: {category}")
         print(f"Description: {description}")
-        print(f"============================================\n\n")
+        print(f"==========================================\n\n")
 def delete_expense():
     pass
 
