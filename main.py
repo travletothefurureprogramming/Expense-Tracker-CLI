@@ -36,7 +36,7 @@ while True:
         ]).ask()
         description = questionary.text("Enter a description (optional): ").ask()
 
-        expenses.add_expense(amount=amount,category=category,description=description)
+        expenses.add_expense(amount=float(amount),category=category,description=description)
 
     elif choice == "2. View Expenses":
         expenses.view_expenses()
