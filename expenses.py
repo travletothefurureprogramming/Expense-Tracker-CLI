@@ -49,11 +49,27 @@ def view_expenses():
         print(f"Category: {category}")
         print(f"Description: {description}")
         print(f"==========================================\n\n")
+
 def delete_expense():
     pass
 
-def filter_expenses():
-    pass
+def filter_expenses(category_filter:str):
+    data = storage.load_expenses()
+
+    for expense in data:
+        if expense["category"] == category_filter:
+            id = expense["id"]
+            category = expense["category"]
+            amount = expense["amount"]
+            description = expense["description"]
+
+            print(f"=============== EXPENSE {id} ===============")
+            print(f"ID: {id}")
+            print(f"Amount: {amount}")
+            print(f"Category: {category}")
+            print(f"Description: {description}")
+            print(f"==========================================\n\n")
+
 
 def validate_expense():
     pass

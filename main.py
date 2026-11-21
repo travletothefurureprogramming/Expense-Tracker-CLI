@@ -45,7 +45,18 @@ while True:
         expenses.delete_expense()
 
     elif choice == "4. Filter Expenses":
-        expenses.filter_expenses()
+        category = questionary.select("Select the category: ",choices = [
+            "Housing",
+            "Groceries",
+            "Food & Dining",
+            "Transport",
+            "Health",
+            "Entertainment",
+            "Shopping",
+            "Bills & Subscriptions",
+            "Other"
+        ]).ask()
+        expenses.filter_expenses(category_filter=category)
 
     elif choice == "5. View Statistics":
         pass
