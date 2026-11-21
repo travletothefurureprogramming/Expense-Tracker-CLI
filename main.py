@@ -2,6 +2,7 @@ import questionary
 import expenses
 import statistic
 import sys
+import storage
 
 print("""
 |-----------------------|
@@ -18,7 +19,8 @@ while True:
                        "3. Delete Expense",
                        "4. Filter Expenses",
                        "5. View Statistics",
-                       "6. Exit"
+                       "6. Export to CSV",
+                       "7. Exit"
                    ]).ask()
 
     if choice == "1. Add Expense":
@@ -75,9 +77,11 @@ while True:
 
         elif choice == "Average Expense":
             statistic.average_expense()
-        
 
-    elif choice == "6. Exit":
+    elif choice == "6. Export to CSV":
+        storage.export_to_csv()
+
+    elif choice == "7. Exit":
         if questionary.confirm("Are you sure you want to exit?").ask():
             sys.exit()
         else:

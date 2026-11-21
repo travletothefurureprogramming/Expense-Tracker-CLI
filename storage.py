@@ -1,4 +1,4 @@
-
+import csv
 import json
 from pathlib import Path
 
@@ -51,6 +51,24 @@ def clear_file():
 def save_all_expenses(expenses):
     with open(FILE, "w", encoding="utf-8") as f:
         json.dump(expenses, f, indent=4, ensure_ascii=False)
+
+def export_to_csv():
+    
+    with open(FILE) as jf:
+        jd = json.load(jf)
+
+    df = open("expenses.csv", 'w', newline='')
+    cw = csv.writer(df)
+
+    c = 0
+    for data in jd:
+        if c == 0:
+            header = data.keys()
+            cw.writerow(header)
+            c += 1
+        cw.writerow(data.values())
+
+    df.close()
 
 if __name__ == "__main__":
     initialize_storage()
