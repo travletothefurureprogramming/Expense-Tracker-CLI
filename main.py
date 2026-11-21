@@ -61,7 +61,21 @@ while True:
         expenses.filter_expenses(category_filter=category)
 
     elif choice == "5. View Statistics":
-        pass
+        choice = questionary.select("Select type of statistics: ",choices=[
+            "Total expenses",
+            "Category Summary",
+            "Average Expense"
+        ]).ask()
+
+        if choice == "Total expenses":
+            statistic.calculate_total()
+
+        elif choice == "Category Summary":
+            statistic.category_summary()
+
+        elif choice == "Average Expense":
+            statistic.average_expense()
+        
 
     elif choice == "6. Exit":
         if questionary.confirm("Are you sure you want to exit?").ask():
