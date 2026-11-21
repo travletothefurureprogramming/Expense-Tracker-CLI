@@ -3,6 +3,7 @@ import storage
 
 
 def add_expense(amount: float, category: str, description: str | None = None):
+    storage.initialize_storage()
     if isinstance(amount, bool) or not isinstance(amount, (int, float)):
         raise ValueError("Amount must be a valid number.")
 
@@ -50,8 +51,18 @@ def view_expenses():
         print(f"Description: {description}")
         print(f"==========================================\n\n")
 
-def delete_expense():
-    pass
+def delete_expense(id):
+    data = storage.load_expenses()
+
+    new_data = []
+
+    for expense in data:
+        if expense["id"] != int(id):
+            new_data.append(expense)
+
+    storage.save_all_expenses(new_data)
+
+    print(f"Successfully deleted expense: {id}")
 
 def filter_expenses(category_filter:str):
     data = storage.load_expenses()

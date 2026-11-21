@@ -11,6 +11,12 @@ def initialize_storage():
         with open(FILE, "w", encoding="utf-8") as f:
             json.dump([], f, indent=4)
 
+    with open(FILE, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    if not content.strip():
+        with open(FILE, "w", encoding="utf-8") as f:
+            json.dump([], f, indent=4)
 
 def load_expenses():
 
@@ -38,6 +44,13 @@ def save_expenses(expense):
     with open(FILE, "w", encoding="utf-8") as f:
         json.dump(expenses, f, indent=4, ensure_ascii=False)
 
+def clear_file():
+    with open(FILE, "w", encoding="utf-8") as f:
+        json.dump([], f, indent=4)
+
+def save_all_expenses(expenses):
+    with open(FILE, "w", encoding="utf-8") as f:
+        json.dump(expenses, f, indent=4, ensure_ascii=False)
 
 if __name__ == "__main__":
     initialize_storage()

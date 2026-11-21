@@ -42,7 +42,9 @@ while True:
         expenses.view_expenses()
 
     elif choice == "3. Delete Expense":
-        expenses.delete_expense()
+        expenses.view_expenses()
+        id = questionary.text("Enter id to delete: ").ask()
+        expenses.delete_expense(id)
 
     elif choice == "4. Filter Expenses":
         category = questionary.select("Select the category: ",choices = [
