@@ -2,7 +2,7 @@
 
 ### A simple Python-based expense tracker that helps you manage your daily expenses.
 
-[Screenshot](assets/image.png)
+![Screenshot](assets/image.png)
 
 ## Overview
 
