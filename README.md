@@ -2,6 +2,8 @@
 
 ### A simple Python-based expense tracker that helps you manage your daily expenses.
 
+[Screenshot](assets/image.png)
+
 ## Overview
 
 Expense Tracker CLI is a lightweight tool that helps users manage their expenses.
